@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		38B32CCB1DBF828700A2D5FF /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 38B32CC91DBF828700A2D5FF /* JSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B32CD11DBF829E00A2D5FF /* JSONObject.swift */; };
+		38B32CD41DBF85C500A2D5FF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 38B32CD31DBF85C500A2D5FF /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +17,7 @@
 		38B32CC91DBF828700A2D5FF /* JSONObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONObject.h; sourceTree = "<group>"; };
 		38B32CCA1DBF828700A2D5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B32CD11DBF829E00A2D5FF /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
+		38B32CD31DBF85C500A2D5FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 		38B32CC81DBF828700A2D5FF /* JSONObject */ = {
 			isa = PBXGroup;
 			children = (
+				38B32CD31DBF85C500A2D5FF /* README.md */,
 				38B32CC91DBF828700A2D5FF /* JSONObject.h */,
 				38B32CCA1DBF828700A2D5FF /* Info.plist */,
 				38B32CD11DBF829E00A2D5FF /* JSONObject.swift */,
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B32CD41DBF85C500A2D5FF /* README.md in Sources */,
 				38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
