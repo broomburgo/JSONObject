@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		38B32CCB1DBF828700A2D5FF /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 38B32CC91DBF828700A2D5FF /* JSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B32CD11DBF829E00A2D5FF /* JSONObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		38B32CC61DBF828700A2D5FF /* JSONObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B32CC91DBF828700A2D5FF /* JSONObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONObject.h; sourceTree = "<group>"; };
 		38B32CCA1DBF828700A2D5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38B32CD11DBF829E00A2D5FF /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			children = (
 				38B32CC91DBF828700A2D5FF /* JSONObject.h */,
 				38B32CCA1DBF828700A2D5FF /* Info.plist */,
+				38B32CD11DBF829E00A2D5FF /* JSONObject.swift */,
 			);
 			path = JSONObject;
 			sourceTree = "<group>";
@@ -96,6 +99,7 @@
 					38B32CC51DBF828700A2D5FF = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3XBSVZGSP3;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -132,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +245,7 @@
 		38B32CCF1DBF828700A2D5FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3XBSVZGSP3;
@@ -252,6 +258,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.broomburgo.JSONObject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -259,6 +266,7 @@
 		38B32CD01DBF828700A2D5FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3XBSVZGSP3;
