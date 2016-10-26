@@ -1,34 +1,34 @@
 import Foundation
 
-protocol JSONNumber {
+public protocol JSONNumber {
 	var toNSNumber: NSNumber { get }
 }
 
 extension Int: JSONNumber {
-	var toNSNumber: NSNumber {
+	public var toNSNumber: NSNumber {
 		return NSNumber(value: self)
 	}
 }
 
 extension Float: JSONNumber {
-	var toNSNumber: NSNumber {
+	public var toNSNumber: NSNumber {
 		return NSNumber(value: self)
 	}
 }
 
 extension Double: JSONNumber {
-	var toNSNumber: NSNumber {
+	public var toNSNumber: NSNumber {
 		return NSNumber(value: self)
 	}
 }
 
 extension NSNumber {
-	static func with(jsonNumber: JSONNumber) -> NSNumber {
+	public static func with(jsonNumber: JSONNumber) -> NSNumber {
 		return jsonNumber.toNSNumber
 	}
 }
 
-enum JSONObject {
+public enum JSONObject {
 	case dictionary([String:JSONObject])
 	case array([JSONObject])
 	case string(String)
@@ -36,7 +36,7 @@ enum JSONObject {
 	case bool(Bool)
 	case null
 
-	var get: Any {
+	public var get: Any {
 		switch self {
 		case .null:
 			return NSNull()
@@ -59,7 +59,7 @@ enum JSONObject {
 		}
 	}
 
-	static func with(_ object: Any) -> JSONObject {
+	public static func with(_ object: Any) -> JSONObject {
 		switch object {
 		case is NSNull:
 			return .null
@@ -86,7 +86,7 @@ enum JSONObject {
 }
 
 extension JSONSerialization {
-	func data(with object: JSONObject) throws -> Data {
+	public func data(with object: JSONObject) throws -> Data {
 		let anyObject = object.get
 		guard JSONSerialization.isValidJSONObject(anyObject) else {
 			throw NSError(
