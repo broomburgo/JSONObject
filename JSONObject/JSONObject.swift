@@ -86,7 +86,7 @@ public enum JSONObject {
 }
 
 extension JSONSerialization {
-	public func data(with object: JSONObject) throws -> Data {
+	public static func data(with object: JSONObject) throws -> Data {
 		let anyObject = object.get
 		guard JSONSerialization.isValidJSONObject(anyObject) else {
 			throw NSError(
