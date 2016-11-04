@@ -10,6 +10,12 @@ extension Int: JSONNumber {
 	}
 }
 
+extension UInt: JSONNumber {
+	public var toNSNumber: NSNumber {
+		return NSNumber(value: self)
+	}
+}
+
 extension Float: JSONNumber {
 	public var toNSNumber: NSNumber {
 		return NSNumber(value: self)
@@ -22,9 +28,15 @@ extension Double: JSONNumber {
 	}
 }
 
-extension NSNumber {
-	public static func with(jsonNumber: JSONNumber) -> NSNumber {
-		return jsonNumber.toNSNumber
+extension Bool: JSONNumber {
+	public var toNSNumber: NSNumber {
+		return NSNumber(value: self)
+	}
+}
+
+extension NSNumber: JSONNumber {
+	public var toNSNumber: NSNumber {
+		return self
 	}
 }
 
@@ -41,7 +53,7 @@ public enum JSONObject {
 		case .null:
 			return NSNull()
 		case .number(let value):
-			return NSNumber.with(jsonNumber: value)
+			return value.toNSNumber
 		case .bool(let value):
 			return NSNumber(value: value)
 		case .string(let value):
@@ -63,7 +75,7 @@ public enum JSONObject {
 		switch object {
 		case is NSNull:
 			return .null
-		case is JSONNumber:
+		case is NSNumber:
 			return .number(object as! JSONNumber)
 		case is Bool:
 			return .bool(object as! Bool)
