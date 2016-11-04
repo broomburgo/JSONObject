@@ -40,10 +40,10 @@ public enum JSONObject {
 		switch self {
 		case .null:
 			return NSNull()
-		case .bool(let value):
-			return NSNumber(value: value)
 		case .number(let value):
 			return NSNumber.with(jsonNumber: value)
+		case .bool(let value):
+			return NSNumber(value: value)
 		case .string(let value):
 			return NSString(string: value)
 		case .array(let array):
@@ -63,10 +63,10 @@ public enum JSONObject {
 		switch object {
 		case is NSNull:
 			return .null
-		case is Bool:
-			return .bool(object as! Bool)
 		case is JSONNumber:
 			return .number(object as! JSONNumber)
+		case is Bool:
+			return .bool(object as! Bool)
 		case is String:
 			return .string(object as! String)
 		case is [Any]:
