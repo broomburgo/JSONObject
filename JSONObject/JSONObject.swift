@@ -28,12 +28,6 @@ extension Double: JSONNumber {
 	}
 }
 
-extension Bool: JSONNumber {
-	public var toNSNumber: NSNumber {
-		return NSNumber(value: self)
-	}
-}
-
 extension NSNumber: JSONNumber {
 	public var toNSNumber: NSNumber {
 		return self
@@ -42,17 +36,32 @@ extension NSNumber: JSONNumber {
 
 public enum JSONObject {
 	case null
-	case bool(Bool)
 	case number(JSONNumber)
+	case bool(Bool)
 	case string(String)
 	case array([JSONObject])
 	case dictionary([String:JSONObject])
+
+	public static func with(_ object: Any?) -> JSONObject {
+		switch object {
+		case .none:
+			return .null
+		case .some(let value):
+			return with(value)
+		}
+	}
 
 	public static func with(_ object: Any) -> JSONObject {
 		switch object {
 		case is NSNull:
 			return .null
-		case is NSNumber:
+		case is Int:
+			return .number(object as! JSONNumber)
+		case is UInt:
+			return .number(object as! JSONNumber)
+		case is Float:
+			return .number(object as! JSONNumber)
+		case is Double:
 			return .number(object as! JSONNumber)
 		case is Bool:
 			return .bool(object as! Bool)
@@ -95,17 +104,30 @@ public enum JSONObject {
 				.copy()
 		}
 	}
+
+	public var getTopLevel: Any {
+		switch self {
+		case .null:
+			return NSArray(array: [])
+		case .number, .bool, .string:
+			return NSArray(array: [get])
+		case .array, .dictionary:
+			return get
+		}
+	}
 }
 
 extension JSONSerialization {
 	public static func data(with object: JSONObject) throws -> Data {
-		let anyObject = object.get
-		guard JSONSerialization.isValidJSONObject(anyObject) else {
+		let topLevelObject = object.getTopLevel
+		guard JSONSerialization.isValidJSONObject(topLevelObject) else {
 			throw NSError(
 				domain: "JSONSerialization",
 				code: 0,
-				userInfo: [NSLocalizedDescriptionKey : "Invalid JSON object"])
+				userInfo: [NSLocalizedDescriptionKey : "Invalid JSON object",
+				           "OriginalJSONObject" : object,
+				           "GotTopLevelObject" : topLevelObject])
 		}
-		return try JSONSerialization.data(withJSONObject: anyObject)
+		return try JSONSerialization.data(withJSONObject: topLevelObject)
 	}
 }

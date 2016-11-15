@@ -11,6 +11,7 @@
 		38A0E7841DDB276F009DE0A7 /* JSONObject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B32CC61DBF828700A2D5FF /* JSONObject.framework */; };
 		38A0E78C1DDB4C58009DE0A7 /* SwiftCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A0E78B1DDB4C58009DE0A7 /* SwiftCheck.framework */; };
 		38A0E78E1DDB4CA9009DE0A7 /* SwiftCheck.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38A0E78B1DDB4C58009DE0A7 /* SwiftCheck.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		38A0E7901DDB51F3009DE0A7 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A0E78F1DDB51F3009DE0A7 /* Tools.swift */; };
 		38B32CCB1DBF828700A2D5FF /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 38B32CC91DBF828700A2D5FF /* JSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B32CD11DBF829E00A2D5FF /* JSONObject.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		38A0E7811DDB276F009DE0A7 /* JSONObjectSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObjectSpec.swift; sourceTree = "<group>"; };
 		38A0E7831DDB276F009DE0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38A0E78B1DDB4C58009DE0A7 /* SwiftCheck.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCheck.framework; path = Carthage/Build/iOS/SwiftCheck.framework; sourceTree = "<group>"; };
+		38A0E78F1DDB51F3009DE0A7 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		38B32CC61DBF828700A2D5FF /* JSONObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B32CC91DBF828700A2D5FF /* JSONObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONObject.h; sourceTree = "<group>"; };
 		38B32CCA1DBF828700A2D5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			children = (
 				38A0E7811DDB276F009DE0A7 /* JSONObjectSpec.swift */,
 				38A0E7831DDB276F009DE0A7 /* Info.plist */,
+				38A0E78F1DDB51F3009DE0A7 /* Tools.swift */,
 			);
 			path = JSONObjectSpec;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A0E7821DDB276F009DE0A7 /* JSONObjectSpec.swift in Sources */,
+				38A0E7901DDB51F3009DE0A7 /* Tools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
