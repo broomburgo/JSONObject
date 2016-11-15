@@ -41,35 +41,12 @@ extension NSNumber: JSONNumber {
 }
 
 public enum JSONObject {
-	case dictionary([String:JSONObject])
-	case array([JSONObject])
-	case string(String)
-	case number(JSONNumber)
-	case bool(Bool)
 	case null
-
-	public var get: Any {
-		switch self {
-		case .null:
-			return NSNull()
-		case .number(let value):
-			return value.toNSNumber
-		case .bool(let value):
-			return NSNumber(value: value)
-		case .string(let value):
-			return NSString(string: value)
-		case .array(let array):
-			return NSArray(array: array.map { $0.get })
-		case .dictionary(let dictionary):
-			return dictionary
-				.map { ($0,$1.get) }
-				.reduce(NSMutableDictionary()) {
-					$0[$1.0] = $1.1
-					return $0
-				}
-				.copy()
-		}
-	}
+	case bool(Bool)
+	case number(JSONNumber)
+	case string(String)
+	case array([JSONObject])
+	case dictionary([String:JSONObject])
 
 	public static func with(_ object: Any) -> JSONObject {
 		switch object {
@@ -93,6 +70,29 @@ public enum JSONObject {
 			})
 		default:
 			return .null
+		}
+	}
+
+	public var get: Any {
+		switch self {
+		case .null:
+			return NSNull()
+		case .number(let value):
+			return value.toNSNumber
+		case .bool(let value):
+			return NSNumber(value: value)
+		case .string(let value):
+			return NSString(string: value)
+		case .array(let array):
+			return NSArray(array: array.map { $0.get })
+		case .dictionary(let dictionary):
+			return dictionary
+				.map { ($0,$1.get) }
+				.reduce(NSMutableDictionary()) {
+					$0[$1.0] = $1.1
+					return $0
+				}
+				.copy()
 		}
 	}
 }
