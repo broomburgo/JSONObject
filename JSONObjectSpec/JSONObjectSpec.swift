@@ -16,7 +16,7 @@ class JSONObjectSpec: XCTestCase {
 	}
 
 	func testCreationWithOptional2() {
-		property("JSONObject creation with Optional will result in .null if Optional is .none, or other if .some - 1") <- forAll { (opt: OptionalOf<Int>) in
+		property("JSONObject creation with Optional will result in .null if Optional is .none, or other if .some - 2") <- forAll { (opt: OptionalOf<Int>) in
 			let optional = opt.getOptional
 			return JSONObject.with(optional).isNull == (optional == nil)
 		}
