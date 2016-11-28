@@ -108,3 +108,25 @@ struct TrueArbitrary: Arbitrary {
 		                  Someclass.arbitrary.map(TrueArbitrary.init)])
 	}
 }
+
+extension JSONObject: Arbitrary {
+	public static var arbitrary: Gen<JSONObject> {
+		let null = Gen<JSONObject>.pure(.null)
+		let number = ArbitraryJSONNumber.arbitrary.map { JSONObject.number($0.get) }
+		let bool = Bool.arbitrary.map(JSONObject.bool)
+		let string = String.arbitrary.map(JSONObject.string)
+		let array = ArrayOf<Int>.arbitrary
+			.map { $0.getArray.map(JSONObject.number) }
+			.map(JSONObject.array)
+		let dictionary = DictionaryOf<String,Int>.arbitrary
+			.map { $0.getDictionary
+				.reduce([String:JSONObject]()) { accumulation, tuple in
+					var m_accumulation = accumulation
+					m_accumulation[tuple.key] = JSONObject.number(tuple.value)
+					return m_accumulation
+				}
+			}
+			.map(JSONObject.dictionary)
+		return Gen<JSONObject>.oneOf([null,number,bool,string,array,dictionary])
+	}
+}

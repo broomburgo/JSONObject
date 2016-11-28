@@ -1,4 +1,5 @@
 import Foundation
+import Functional
 
 public protocol JSONNumber {
 	var toNSNumber: NSNumber { get }
@@ -113,6 +114,63 @@ public enum JSONObject {
 			return NSArray(array: [get])
 		case .array, .dictionary:
 			return get
+		}
+	}
+}
+
+extension JSONObject: Equatable {
+	public static func == (left: JSONObject, right: JSONObject) -> Bool {
+		switch (left, right) {
+		case (.null, .null):
+			return true
+		case (.number(let leftValue), .number(let rightValue)):
+			return leftValue.toNSNumber.isEqual(to: rightValue.toNSNumber)
+		case (.bool(let leftValue), .bool(let rightValue)):
+			return leftValue == rightValue
+		case (.string(let leftValue), .string(let rightValue)):
+			return leftValue == rightValue
+		case (.array(let objects1),.array(let objects2)):
+			return objects1.isEqual(to: objects2)
+		case (.dictionary(let objects1),.dictionary(let objects2)):
+			return objects1.isEqual(to: objects2)
+		default:
+			return false
+		}
+	}
+}
+
+extension JSONObject: Monoid {
+	public static var empty: JSONObject {
+		return .null
+	}
+
+	public func compose(_ other: JSONObject) -> JSONObject {
+		switch (self,other) {
+		case (.null,_):
+			return other
+		case (_,.null):
+			return self
+		case (.array(let objects1),.array(let objects2)):
+			return .array(objects1 + objects2)
+		case (.dictionary(let objects1),.dictionary(let objects2)):
+			var newDict: [String:JSONObject] = [:]
+			for (key,value) in objects1 {
+				newDict[key] = value
+			}
+			for (key,value) in objects2 {
+				newDict[key] = value
+			}
+			return .dictionary(newDict)
+		case (.dictionary,_):
+			return self
+		case (_,.dictionary):
+			return other
+		case (.array(let objects),_):
+			return .array(objects + [other])
+		case (_,.array(let objects)):
+			return .array([self] + objects)
+		default:
+			return .array([self,other])
 		}
 	}
 }
