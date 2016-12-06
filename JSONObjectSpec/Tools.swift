@@ -66,10 +66,10 @@ struct ArbitraryJSONNumber: Arbitrary {
 	}
 
 	static var arbitrary: Gen<ArbitraryJSONNumber> {
-		return Gen.oneOf([Int.arbitrary.map(ArbitraryJSONNumber.init),
-		                  UInt.arbitrary.map(ArbitraryJSONNumber.init),
-		                  Float.arbitrary.map(ArbitraryJSONNumber.init),
-		                  Double.arbitrary.map(ArbitraryJSONNumber.init)])
+		return Gen.one(of: [Int.arbitrary.map(ArbitraryJSONNumber.init),
+		                    UInt.arbitrary.map(ArbitraryJSONNumber.init),
+		                    Float.arbitrary.map(ArbitraryJSONNumber.init),
+		                    Double.arbitrary.map(ArbitraryJSONNumber.init)])
 	}
 }
 
@@ -103,9 +103,9 @@ struct TrueArbitrary: Arbitrary {
 	}
 
 	static var arbitrary: Gen<TrueArbitrary> {
-		return Gen.oneOf([Int.arbitrary.map(TrueArbitrary.init),
-		                  Somestruct.arbitrary.map(TrueArbitrary.init),
-		                  Someclass.arbitrary.map(TrueArbitrary.init)])
+		return Gen.one(of: [Int.arbitrary.map(TrueArbitrary.init),
+		                    Somestruct.arbitrary.map(TrueArbitrary.init),
+		                    Someclass.arbitrary.map(TrueArbitrary.init)])
 	}
 }
 
@@ -127,6 +127,6 @@ extension JSONObject: Arbitrary {
 				}
 			}
 			.map(JSONObject.dictionary)
-		return Gen<JSONObject>.oneOf([null,number,bool,string,array,dictionary])
+		return Gen<JSONObject>.one(of: [null,number,bool,string,array,dictionary])
 	}
 }

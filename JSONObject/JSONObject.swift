@@ -151,24 +151,17 @@ extension JSONObject: Monoid {
 		case (_,.null):
 			return self
 		case (.array(let objects1),.array(let objects2)):
-			return .array(objects1 + objects2)
+			return .array(objects1.compose(objects2))
 		case (.dictionary(let objects1),.dictionary(let objects2)):
-			var newDict: [String:JSONObject] = [:]
-			for (key,value) in objects1 {
-				newDict[key] = value
-			}
-			for (key,value) in objects2 {
-				newDict[key] = value
-			}
-			return .dictionary(newDict)
+			return .dictionary(objects1.compose(objects2))
 		case (.dictionary,_):
 			return self
 		case (_,.dictionary):
 			return other
 		case (.array(let objects),_):
-			return .array(objects + [other])
+			return .array(objects.compose([other]))
 		case (_,.array(let objects)):
-			return .array([self] + objects)
+			return .array([self].compose(objects))
 		default:
 			return .array([self,other])
 		}
