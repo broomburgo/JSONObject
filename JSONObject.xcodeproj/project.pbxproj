@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		380159DB1DF71B61001F3E02 /* Functional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383F83C51DEC7BBF0024D32B /* Functional.framework */; };
 		383F83C61DEC7BBF0024D32B /* Functional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383F83C51DEC7BBF0024D32B /* Functional.framework */; };
 		383F83C71DEC7BC70024D32B /* Functional.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 383F83C51DEC7BBF0024D32B /* Functional.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		38A0E7821DDB276F009DE0A7 /* JSONObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A0E7811DDB276F009DE0A7 /* JSONObjectSpec.swift */; };
@@ -63,6 +64,7 @@
 			files = (
 				38A0E7841DDB276F009DE0A7 /* JSONObject.framework in Frameworks */,
 				38A0E78C1DDB4C58009DE0A7 /* SwiftCheck.framework in Frameworks */,
+				380159DB1DF71B61001F3E02 /* Functional.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
