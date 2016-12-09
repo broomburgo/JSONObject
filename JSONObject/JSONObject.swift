@@ -41,7 +41,7 @@ public enum JSONObject {
 	case bool(Bool)
 	case string(String)
 	case array([JSONObject])
-	case dictionary([String:JSONObject])
+	case dict([String:JSONObject])
 
 	public static func with(_ object: Any?) -> JSONObject {
 		switch object {
@@ -71,7 +71,7 @@ public enum JSONObject {
 		case is [Any]:
 			return .array((object as! [Any]).map(JSONObject.with))
 		case is [String:Any]:
-			return .dictionary((object as! [String:Any])
+			return .dict((object as! [String:Any])
 				.map { ($0,JSONObject.with($1)) }
 				.reduce([:]) {
 					var m_accumulation = $0
@@ -95,7 +95,7 @@ public enum JSONObject {
 			return NSString(string: value)
 		case .array(let array):
 			return NSArray(array: array.map { $0.get })
-		case .dictionary(let dictionary):
+		case .dict(let dictionary):
 			return dictionary
 				.map { ($0,$1.get) }
 				.reduce(NSMutableDictionary()) {
@@ -112,7 +112,7 @@ public enum JSONObject {
 			return NSArray(array: [])
 		case .number, .bool, .string:
 			return NSArray(array: [get])
-		case .array, .dictionary:
+		case .array, .dict:
 			return get
 		}
 	}
@@ -131,7 +131,7 @@ extension JSONObject: Equatable {
 			return leftValue == rightValue
 		case (.array(let objects1),.array(let objects2)):
 			return objects1.isEqual(to: objects2)
-		case (.dictionary(let objects1),.dictionary(let objects2)):
+		case (.dict(let objects1),.dict(let objects2)):
 			return objects1.isEqual(to: objects2)
 		default:
 			return false
@@ -152,11 +152,11 @@ extension JSONObject: Monoid {
 			return self
 		case (.array(let objects1),.array(let objects2)):
 			return .array(objects1.join(objects2))
-		case (.dictionary(let objects1),.dictionary(let objects2)):
-			return .dictionary(objects1.join(objects2))
-		case (.dictionary,_):
+		case (.dict(let objects1),.dict(let objects2)):
+			return .dict(objects1.join(objects2))
+		case (.dict,_):
 			return self
-		case (_,.dictionary):
+		case (_,.dict):
 			return other
 		case (.array(let objects),_):
 			return .array(objects.join([other]))

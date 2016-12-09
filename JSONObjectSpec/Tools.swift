@@ -48,9 +48,9 @@ extension JSONObject {
 		}
 	}
 
-	func isDictionary(_ dict: [String:Any]) -> Bool {
+	func isDict(_ dict: [String:Any]) -> Bool {
 		switch self {
-		case .dictionary(let values):
+		case .dict(let values):
 			return values.count == dict.count
 		default:
 			return false
@@ -126,7 +126,7 @@ extension JSONObject: Arbitrary {
 					return m_accumulation
 				}
 			}
-			.map(JSONObject.dictionary)
+			.map(JSONObject.dict)
 		return Gen<JSONObject>.one(of: [null,number,bool,string,array,dictionary])
 	}
 }

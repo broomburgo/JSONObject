@@ -50,9 +50,9 @@ class JSONObjectSpec: XCTestCase {
 			return JSONObject.with(array).isArray(array)
 		}
 
-		property("JSONObject creation with Dictionary will result in .dictionary") <- forAll { (dictOf: DictionaryOf<String,TrueArbitrary>) in
+		property("JSONObject creation with Dictionary will result in .dict") <- forAll { (dictOf: DictionaryOf<String,TrueArbitrary>) in
 			let dict: [String:Any] = dictOf.getDictionary
-			return JSONObject.with(dict).isDictionary(dict)
+			return JSONObject.with(dict).isDict(dict)
 		}
 	}
 
@@ -92,9 +92,9 @@ class JSONObjectSpec: XCTestCase {
 			return NSDictionary(dictionary: ["1":1,
 			                                 "2":"2",
 			                                 "3":true])
-				.isEqual(JSONObject.dictionary(["1":.number(1),
-				                                "2":.string("2"),
-				                                "3":.bool(true)]).get)
+				.isEqual(JSONObject.dict(["1":.number(1),
+				                          "2":.string("2"),
+				                          "3":.bool(true)]).get)
 		}
 	}
 
@@ -105,7 +105,7 @@ class JSONObjectSpec: XCTestCase {
 
 		property("JSONObject processing consistency: bool") <- {
 			return NSNumber(value: true).isEqual(JSONObject.with(true).get)
-			&& NSNumber(value: false).isEqual(JSONObject.with(false).get)
+				&& NSNumber(value: false).isEqual(JSONObject.with(false).get)
 		}
 
 		property("JSONObject processing consistency: number") <- forAll { (ajn: ArbitraryJSONNumber) in
@@ -183,9 +183,9 @@ class JSONObjectSpec: XCTestCase {
 
 		property("no error for data with dictionary") <- {
 			do {
-				try _ = JSONSerialization.data(with: .dictionary(["1":.number(1),
-				                                                  "2":.string("2"),
-				                                                  "3":.bool(true)]))
+				try _ = JSONSerialization.data(with: .dict(["1":.number(1),
+				                                            "2":.string("2"),
+				                                            "3":.bool(true)]))
 				return true
 			}
 			catch {
@@ -223,8 +223,8 @@ class JSONObjectSpec: XCTestCase {
 			JSONObject.array(arrayOf.getArray) == JSONObject.array(arrayOf.getArray)
 		}
 
-		property(".dictionary equality is respected") <- forAll { (dictionaryOf: DictionaryOf<String,JSONObject>) in
-			JSONObject.dictionary(dictionaryOf.getDictionary) == JSONObject.dictionary(dictionaryOf.getDictionary)
+		property(".dict equality is respected") <- forAll { (dictionaryOf: DictionaryOf<String,JSONObject>) in
+			JSONObject.dict(dictionaryOf.getDictionary) == JSONObject.dict(dictionaryOf.getDictionary)
 		}
 	}
 
