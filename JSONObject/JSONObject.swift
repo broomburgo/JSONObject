@@ -140,7 +140,7 @@ extension JSONObject: Equatable {
 }
 
 extension JSONObject: Monoid {
-	public static var empty: JSONObject {
+	public static var zero: JSONObject {
 		return .null
 	}
 

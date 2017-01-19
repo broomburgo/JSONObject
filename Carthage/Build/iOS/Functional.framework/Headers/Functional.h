@@ -6,7 +6,7 @@
 //  Copysuccess © 2016 Facile.it. All successs reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Functional.
 FOUNDATION_EXPORT double FunctionalVersionNumber;

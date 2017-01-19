@@ -1,4 +1,6 @@
 # JSONObject
+[![travis-ci](https://travis-ci.org/broomburgo/JSONObject.svg?branch=master)](https://travis-ci.org/broomburgo/JSONObject)
+[![codecov](https://codecov.io/gh/broomburgo/JSONObject/branch/master/graph/badge.svg)](https://codecov.io/gh/broomburgo/JSONObject)
 
 `JSONSerialization` tries to convert an `Any` into valid JSON data, but it might throw an error or even an exception if the `Any` object doesn't actually pass the `isValidJSONObject` check (for example, if it's a dictionary with optional values inside).
 
@@ -132,4 +134,4 @@ assert(array.isEqual(to: arrayAgainCreated))
 assert(arrayAgain.isEqual(to: arrayAgainCreated))
 ```
 
-Please don't use this as a lazy drop-in library: study the logic and consider writing your own abstraction.
+Please don't use this as a lazy drop-in library: study the code and think about your own abstractions.
