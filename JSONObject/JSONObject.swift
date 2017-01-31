@@ -83,6 +83,14 @@ public enum JSONObject {
 		}
 	}
 
+	public static func optDict(key: String, value: Any?) -> JSONObject {
+		return value
+			.map { .with($0) }
+			.filter { $0 != .null}
+			.map { .dict([key : $0]) }
+			.get(or: .null)
+	}
+
 	public var get: Any {
 		switch self {
 		case .null:

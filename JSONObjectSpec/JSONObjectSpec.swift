@@ -194,6 +194,21 @@ class JSONObjectSpec: XCTestCase {
 		}
 	}
 
+	func testOptDict() {
+		property(".optDict generates a valid .dict JSONObject (with no .null value) or .null") <- forAll { (ao: OptionalOf<TrueArbitrary>, key: String) in
+			let optional = ao.getOptional?.get
+			let generated = JSONObject.optDict(key: key, value: optional)
+
+			if optional == nil {
+				return generated == .null
+			} else if optional! is Int {
+				return generated == .dict([key : .number(optional as! Int)])
+			} else {
+				return generated == .null
+			}
+		}
+	}
+
 	func testEquality() {
 		property("arbitrary JSONObject is equal to itself") <- forAll { (object: JSONObject) in
 			object == object
