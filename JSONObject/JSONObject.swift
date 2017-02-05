@@ -132,7 +132,7 @@ extension JSONObject: Equatable {
 		case (.null, .null):
 			return true
 		case (.number(let leftValue), .number(let rightValue)):
-			return leftValue.toNSNumber.isEqual(to: rightValue.toNSNumber)
+			return abs(leftValue.toNSNumber.doubleValue - rightValue.toNSNumber.doubleValue) <= 0.001
 		case (.bool(let leftValue), .bool(let rightValue)):
 			return leftValue == rightValue
 		case (.string(let leftValue), .string(let rightValue)):
