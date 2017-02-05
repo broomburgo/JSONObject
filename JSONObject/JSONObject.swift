@@ -124,26 +124,30 @@ public enum JSONObject {
 			return get
 		}
 	}
-}
 
-extension JSONObject: Equatable {
-	public static func == (left: JSONObject, right: JSONObject) -> Bool {
-		switch (left, right) {
+	public func isEqual(to other: JSONObject, numberPrecision: Double = 0.001) -> Bool {
+		switch (self, other) {
 		case (.null, .null):
 			return true
 		case (.number(let leftValue), .number(let rightValue)):
-			return abs(leftValue.toNSNumber.doubleValue - rightValue.toNSNumber.doubleValue) <= 0.001
+			return abs(leftValue.toNSNumber.doubleValue - rightValue.toNSNumber.doubleValue) <= numberPrecision
 		case (.bool(let leftValue), .bool(let rightValue)):
 			return leftValue == rightValue
 		case (.string(let leftValue), .string(let rightValue)):
 			return leftValue == rightValue
 		case (.array(let objects1),.array(let objects2)):
-			return objects1.isEqual(to: objects2)
+			return objects1.isEqual(to: objects2) { $0.isEqual(to: $1, numberPrecision: numberPrecision) }
 		case (.dict(let objects1),.dict(let objects2)):
-			return objects1.isEqual(to: objects2)
+			return objects1.isEqual(to: objects2) { $0.isEqual(to: $1, numberPrecision: numberPrecision) }
 		default:
 			return false
 		}
+	}
+}
+
+extension JSONObject: Equatable {
+	public static func == (left: JSONObject, right: JSONObject) -> Bool {
+		return left.isEqual(to: right)
 	}
 }
 
