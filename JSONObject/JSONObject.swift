@@ -44,15 +44,9 @@ public enum JSONObject {
 	case dict([String:JSONObject])
 
 	public static func with(_ object: Any?) -> JSONObject {
-		switch object {
-		case .none:
-			return .null
-		case .some(let value):
-			return with(value)
-		}
-	}
 
-	public static func with(_ object: Any) -> JSONObject {
+		guard let object = object else { return .null }
+
 		switch object {
 		case is NSNull:
 			return .null
