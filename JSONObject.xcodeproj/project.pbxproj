@@ -56,6 +56,10 @@
 		38B32CD11DBF829E00A2D5FF /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		38B32CD31DBF85C500A2D5FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		38D0416A1E9250DC003F7B43 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		38D041711E925213003F7B43 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		38D041721E925213003F7B43 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
+		38D041731E925213003F7B43 /* codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = codecov.yml; sourceTree = "<group>"; };
+		38D041741E925213003F7B43 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +137,11 @@
 		38D041691E9250CF003F7B43 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
+				38D041711E925213003F7B43 /* Cartfile */,
+				38D041741E925213003F7B43 /* README.md */,
+				38D041721E925213003F7B43 /* Cartfile.private */,
 				38D0416A1E9250DC003F7B43 /* .travis.yml */,
+				38D041731E925213003F7B43 /* codecov.yml */,
 			);
 			name = Docs;
 			sourceTree = "<group>";
