@@ -245,15 +245,15 @@ class JSONObjectSpec: XCTestCase {
 
 	func testMonoidLaws() {
 		property("1•a = a") <- forAll { (object: JSONObject) in
-			JSONObject.zero.join(object) == object
+			JSONObject.zero.compose(object) == object
 		}
 
 		property("a•1 = a") <- forAll { (object: JSONObject) in
-			object.join(JSONObject.zero) == object
+			object.compose(JSONObject.zero) == object
 		}
 
 		property("(a•b)•c = a•(b•c)") <- forAll { (object1: JSONObject, object2: JSONObject, object3: JSONObject) in
-			(object1.join(object2)).join(object3) == object1.join(object2.join(object3))
+			(object1.compose(object2)).compose(object3) == object1.compose(object2.compose(object3))
 		}
 	}
 }

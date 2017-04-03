@@ -150,24 +150,24 @@ extension JSONObject: Monoid {
 		return .null
 	}
 
-	public func join(_ other: JSONObject) -> JSONObject {
+	public func compose(_ other: JSONObject) -> JSONObject {
 		switch (self,other) {
 		case (.null,_):
 			return other
 		case (_,.null):
 			return self
 		case (.array(let objects1),.array(let objects2)):
-			return .array(objects1.join(objects2))
+			return .array(objects1.compose(objects2))
 		case (.dict(let objects1),.dict(let objects2)):
-			return .dict(objects1.join(objects2))
+			return .dict(objects1.compose(objects2))
 		case (.dict,_):
 			return self
 		case (_,.dict):
 			return other
 		case (.array(let objects),_):
-			return .array(objects.join([other]))
+			return .array(objects.compose([other]))
 		case (_,.array(let objects)):
-			return .array([self].join(objects))
+			return .array([self].compose(objects))
 		default:
 			return .array([self,other])
 		}
