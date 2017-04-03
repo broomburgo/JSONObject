@@ -55,6 +55,7 @@
 		38B32CCA1DBF828700A2D5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B32CD11DBF829E00A2D5FF /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		38B32CD31DBF85C500A2D5FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		38D0416A1E9250DC003F7B43 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 		38B32CBC1DBF828700A2D5FF = {
 			isa = PBXGroup;
 			children = (
+				38D041691E9250CF003F7B43 /* Docs */,
 				38A0E78A1DDB4C48009DE0A7 /* Frameworks */,
 				38B32CC81DBF828700A2D5FF /* JSONObject */,
 				38A0E7801DDB276F009DE0A7 /* JSONObjectSpec */,
@@ -126,6 +128,14 @@
 				38B32CD11DBF829E00A2D5FF /* JSONObject.swift */,
 			);
 			path = JSONObject;
+			sourceTree = "<group>";
+		};
+		38D041691E9250CF003F7B43 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				38D0416A1E9250DC003F7B43 /* .travis.yml */,
+			);
+			name = Docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
