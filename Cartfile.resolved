@@ -1,2 +1,2 @@
-github "broomburgo/Functional" "818ddb5d9792e2fff98a97ffb4ac952ea17cd929"
-github "typelift/SwiftCheck" "0.7.3"
+github "broomburgo/Functional" "2be2a92801b68ab32a99ba130de2a1adacd7d312"
+github "typelift/SwiftCheck" "0.8.0"
