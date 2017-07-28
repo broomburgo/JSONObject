@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3804D6AE1F2B84EE00420DAB /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804D6AD1F2B84EE00420DAB /* Test.swift */; };
-		3804D6AF1F2B84EE00420DAB /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804D6AD1F2B84EE00420DAB /* Test.swift */; };
 		38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B32CD11DBF829E00A2D5FF /* JSONObject.swift */; };
 		38FDFE271F2B2D5B002ECC3A /* Abstract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFE251F2B2D5B002ECC3A /* Abstract.framework */; };
 		38FDFE511F2B33CE002ECC3A /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 38FDFE321F2B3186002ECC3A /* JSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,7 +54,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3804D6AD1F2B84EE00420DAB /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		38A0E7811DDB276F009DE0A7 /* JSONObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObjectTests.swift; sourceTree = "<group>"; };
 		38A0E78F1DDB51F3009DE0A7 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		38B32CC61DBF828700A2D5FF /* JSONObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,7 +163,6 @@
 				38B32CD11DBF829E00A2D5FF /* JSONObject.swift */,
 				38FDFE321F2B3186002ECC3A /* JSONObject.h */,
 				38FDFE331F2B3186002ECC3A /* Info.plist */,
-				3804D6AD1F2B84EE00420DAB /* Test.swift */,
 			);
 			path = JSONObject;
 			sourceTree = "<group>";
@@ -335,7 +331,6 @@
 			files = (
 				38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */,
 				38FDFECE1F2B483D002ECC3A /* PathTo.swift in Sources */,
-				3804D6AE1F2B84EE00420DAB /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +340,6 @@
 			files = (
 				38FDFE8F1F2B3718002ECC3A /* JSONObject.swift in Sources */,
 				38FDFECF1F2B483D002ECC3A /* PathTo.swift in Sources */,
-				3804D6AF1F2B84EE00420DAB /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
