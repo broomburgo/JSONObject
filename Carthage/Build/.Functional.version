@@ -1,9 +1,0 @@
-{
-  "commitish" : "2be2a92801b68ab32a99ba130de2a1adacd7d312",
-  "iOS" : [
-    {
-      "hash" : "f5b6b7cf4b1d670283d88a60de224d14b449c4c844d07a45ce74de9e539b05ec",
-      "name" : "Functional"
-    }
-  ]
-}
