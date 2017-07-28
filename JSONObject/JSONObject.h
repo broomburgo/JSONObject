@@ -6,7 +6,7 @@
 //  Copyright © 2017 broomburgo.it. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for JSONObject.
 FOUNDATION_EXPORT double JSONObjectVersionNumber;
