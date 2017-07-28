@@ -16,7 +16,6 @@
 		38FDFE911F2B3725002ECC3A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A0E78F1DDB51F3009DE0A7 /* Tools.swift */; };
 		38FDFE921F2B3727002ECC3A /* JSONObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A0E7811DDB276F009DE0A7 /* JSONObjectTests.swift */; };
 		38FDFE931F2B3748002ECC3A /* Abstract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFE4C1F2B33A4002ECC3A /* Abstract.framework */; };
-		38FDFE941F2B374A002ECC3A /* SwiftCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFE4D1F2B33A4002ECC3A /* SwiftCheck.framework */; };
 		38FDFE951F2B374F002ECC3A /* Abstract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFE4C1F2B33A4002ECC3A /* Abstract.framework */; };
 		38FDFE961F2B3751002ECC3A /* SwiftCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFE4D1F2B33A4002ECC3A /* SwiftCheck.framework */; };
 		38FDFE981F2B3758002ECC3A /* Abstract.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38FDFE4C1F2B33A4002ECC3A /* Abstract.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -83,7 +82,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				38FDFE931F2B3748002ECC3A /* Abstract.framework in Frameworks */,
-				38FDFE941F2B374A002ECC3A /* SwiftCheck.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +621,7 @@
 				38FDFE8B1F2B36F2002ECC3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38FDFE8C1F2B36F2002ECC3A /* Build configuration list for PBXNativeTarget "JSONObjectTests" */ = {
 			isa = XCConfigurationList;
@@ -631,6 +630,7 @@
 				38FDFE8E1F2B36F2002ECC3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
