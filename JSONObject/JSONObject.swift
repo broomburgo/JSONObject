@@ -1,5 +1,54 @@
 import Foundation
-import Functional
+import Abstract
+
+extension Array {
+	func isEqual(to other: [Element], considering predicate: (Element,Element) -> Bool) -> Bool {
+		guard count == other.count else { return false }
+		for (index,element) in enumerated() {
+			if predicate(element,other[index]) == false {
+				return false
+			}
+		}
+		return true
+	}
+}
+
+extension Dictionary {
+	func isEqual(to other: [Key:Value], considering predicate: (Value,Value) -> Bool) -> Bool {
+		guard self.count == other.count else { return false }
+		for key in keys {
+			let selfValue = self[key]
+			let otherValue = other[key]
+			switch (selfValue,otherValue) {
+			case (.some,.none):
+				return false
+			case (.none,.some):
+				return false
+			case let (.some(failure),.some(success)):
+				if predicate(failure,success) == false {
+					return false
+				}
+			default:
+				break
+			}
+		}
+		return true
+	}
+}
+
+extension Dictionary where Value: Monoid {
+	static func <> (left: Dictionary, right: Dictionary) -> Dictionary {
+		var m_dict = left
+		for (key,value) in right {
+			if let current = m_dict[key] {
+				m_dict[key] = current <> value
+			} else {
+				m_dict[key] = value
+			}
+		}
+		return m_dict
+	}
+}
 
 public protocol JSONNumber {
 	var toNSNumber: NSNumber { get }
@@ -80,9 +129,9 @@ public enum JSONObject {
 	public static func optDict(key: String, value: Any?) -> JSONObject {
 		return value
 			.map { .with($0) }
-			.filter { $0 != .null}
+			.flatMap { $0 != .null ? $0 : nil }
 			.map { .dict([key : $0]) }
-			.get(or: .null)
+			?? .null
 	}
 
 	public var get: Any {
@@ -146,30 +195,30 @@ extension JSONObject: Equatable {
 }
 
 extension JSONObject: Monoid {
-	public static var zero: JSONObject {
+	public static var empty: JSONObject {
 		return .null
 	}
 
-	public func compose(_ other: JSONObject) -> JSONObject {
-		switch (self,other) {
+	public static func <> (_ left: JSONObject, _ right: JSONObject) -> JSONObject {
+		switch (left,right) {
 		case (.null,_):
-			return other
+			return right
 		case (_,.null):
-			return self
+			return left
 		case (.array(let objects1),.array(let objects2)):
-			return .array(objects1.compose(objects2))
+			return .array(objects1 + objects2)
 		case (.dict(let objects1),.dict(let objects2)):
-			return .dict(objects1.compose(objects2))
+			return .dict(objects1 <> objects2)
 		case (.dict,_):
-			return self
+			return left
 		case (_,.dict):
-			return other
+			return right
 		case (.array(let objects),_):
-			return .array(objects.compose([other]))
+			return .array(objects + [right])
 		case (_,.array(let objects)):
-			return .array([self].compose(objects))
+			return .array([left] + objects)
 		default:
-			return .array([self,other])
+			return .array([left,right])
 		}
 	}
 }
