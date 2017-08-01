@@ -1,2 +1,2 @@
 github "broomburgo/Abstract" "master"
-git "/Users/elviro/Documents/Projects/Monads" "master"
+github "broomburgo/Monads"
