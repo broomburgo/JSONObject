@@ -2,11 +2,11 @@
 //  JSONObject.h
 //  JSONObject
 //
-//  Created by Elviro Rocca on 25/10/16.
-//  Copyright © 2016 broomburgo.it. All rights reserved.
+//  Created by Elviro Rocca on 28/07/17.
+//  Copyright © 2017 broomburgo.it. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for JSONObject.
 FOUNDATION_EXPORT double JSONObjectVersionNumber;

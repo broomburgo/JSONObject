@@ -38,13 +38,13 @@ let dict: [String:Any] = [
 
 let jObj1 = JSONObject.with(dict)
 
-let jObj1Created: JSONObject = .dictionary([
+let jObj1Created: JSONObject = .dict([
 	"key1" : .number(3),
 	"key2" : .string("hi"),
 	"key3" : .array([
-		.dictionary(["key" : .number(10)]),
-		.dictionary(["key" : .number(11)]),
-		.dictionary(["key" : .number(12)])
+		.dict(["key" : .number(10)]),
+		.dict(["key" : .number(11)]),
+		.dict(["key" : .number(12)])
 		]),
 	"key4" : .array([
 		.bool(true),
@@ -54,7 +54,7 @@ let jObj1Created: JSONObject = .dictionary([
 		]),
 	"key5" : .bool(true),
 	"key6" : .null,
-	"key7" : .dictionary([
+	"key7" : .dict([
 		"key1" : .bool(false),
 		"key2" : .array([
 			.number(1),
@@ -81,7 +81,6 @@ assert(dict.isEqual(to: dictAgain))
 assert(dict.isEqual(to: dictAgainCreated))
 assert(dictAgain.isEqual(to: dictAgainCreated))
 
-
 let array: [Any] = [
 	"value1",
 	2,
@@ -107,7 +106,7 @@ let jObj2Created: JSONObject = .array([
 		.string("value2")
 		]),
 	.bool(true),
-	.dictionary([
+	.dict([
 		"key1" : .number(1),
 		"key2" : .null
 		]),
