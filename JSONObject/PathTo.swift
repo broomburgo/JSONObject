@@ -8,6 +8,10 @@ public struct Path: CustomStringConvertible {
 	public init(_ keys: String...) {
 		self.keys = keys
 	}
+    
+    public init(keysArray: [String]) {
+        self.keys = keysArray
+    }
 
 	public var description: String {
 		return keys.reduce("") { $0 + " - " + $1 }
@@ -42,7 +46,7 @@ extension Path: ExpressibleByStringLiteral {
 
 extension Path: Equatable {
     public static func == (left: Path, right: Path) -> Bool {
-        return left.description == right.description
+        return left.keys == right.keys
     }
 }
 
@@ -68,7 +72,9 @@ public enum PathError: Error, CustomDebugStringConvertible {
 		case .wrongTargetContentForLastKey(let root, let path, let contentDescription):
 			return "Wrong target content for last key (root: \(root); path: \(path); contentDescription: \(contentDescription))"
         case .multiple(let pathErrors):
-            return pathErrors.reduce("") { $0.0 + "\($0.1.debugDescription)\n" }
+            return pathErrors
+                .map { "\($0.debugDescription)\n" }
+                .joined()
         }
 	}
 
@@ -123,10 +129,8 @@ public enum PathError: Error, CustomDebugStringConvertible {
             return NSError.init(
                 domain: domain,
                 code: 5,
-                userInfo: pathErrors.reduce([:]) { (dict, pathError) in
-                    guard var newDict = dict else { return dict }
-                    newDict[pathError.debugDescription] = pathError.getNSError
-                    return newDict })
+                userInfo: ["multiple": [pathErrors.map { $0.getNSError }],
+                           NSLocalizedDescriptionKey: "PathError.multiple"])
         }
 	}
 }
