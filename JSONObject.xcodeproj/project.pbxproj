@@ -26,6 +26,7 @@
 		38FDFF241F2B7D81002ECC3A /* Monads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFF221F2B7D81002ECC3A /* Monads.framework */; };
 		38FDFF261F2B7DAB002ECC3A /* Monads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFF251F2B7DAB002ECC3A /* Monads.framework */; };
 		38FDFF271F2B7DF9002ECC3A /* Monads.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38FDFF221F2B7D81002ECC3A /* Monads.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA01391E1F30CC6C00D7E521 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA01391D1F30CC6C00D7E521 /* PathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		38FDFECD1F2B483D002ECC3A /* PathTo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathTo.swift; sourceTree = "<group>"; };
 		38FDFF221F2B7D81002ECC3A /* Monads.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Monads.framework; path = Carthage/Build/Mac/Monads.framework; sourceTree = "<group>"; };
 		38FDFF251F2B7DAB002ECC3A /* Monads.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Monads.framework; path = Carthage/Build/iOS/Monads.framework; sourceTree = "<group>"; };
+		AA01391D1F30CC6C00D7E521 /* PathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				38A0E78F1DDB51F3009DE0A7 /* Tools.swift */,
 				38A0E7811DDB276F009DE0A7 /* JSONObjectTests.swift */,
 				38FDFE3F1F2B3186002ECC3A /* Info.plist */,
+				AA01391D1F30CC6C00D7E521 /* PathTests.swift */,
 			);
 			path = JSONObjectTests;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA01391E1F30CC6C00D7E521 /* PathTests.swift in Sources */,
 				38FDFE921F2B3727002ECC3A /* JSONObjectTests.swift in Sources */,
 				38FDFE911F2B3725002ECC3A /* Tools.swift in Sources */,
 			);

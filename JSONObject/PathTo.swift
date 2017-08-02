@@ -40,6 +40,12 @@ extension Path: ExpressibleByStringLiteral {
 	}
 }
 
+extension Path: Equatable {
+    public static func == (left: Path, right: Path) -> Bool {
+        return left.description == right.description
+    }
+}
+
 public enum PathError: Error, CustomDebugStringConvertible {
 
 	case emptyPath(root: [String:Any], path: Path)
@@ -137,6 +143,12 @@ extension PathError: Semigroup {
         default:
             return PathError.multiple([left, right])
         }
+    }
+}
+
+extension PathError: Equatable {
+    public static func == (left: PathError, right: PathError) -> Bool {
+        return left.debugDescription == right.debugDescription
     }
 }
 

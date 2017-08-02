@@ -130,3 +130,68 @@ extension JSONObject: Arbitrary {
 		return Gen<JSONObject>.one(of: [null,number,bool,string,array,dictionary])
 	}
 }
+
+extension Path: Arbitrary {
+    public static var arbitrary: Gen<Path> {
+        return Gen<Path>.compose {
+            Path.init($0.generate())
+        }
+    }
+}
+
+extension PathError: Arbitrary {
+    public static var arbitrary: Gen<PathError> {
+        let root = DictionaryOf<String,String>.arbitrary.generate.getDictionary
+        return  Gen<PathError>.one(of: [
+            Gen.pure(PathError.emptyPath(
+                root: root,
+                path: Path.arbitrary.generate)),
+            Gen.pure(PathError.noDictAtKey(
+                root: root,
+                path: Path.arbitrary.generate,
+                key: String.arbitrary.generate)),
+            Gen.pure(PathError.noTargetForLastKey(
+                root: root,
+                path: Path.arbitrary.generate,
+                key: String.arbitrary.generate)),
+            Gen.pure(PathError.wrongTargetTypeForLastKey(
+                root: root,
+                path: Path.arbitrary.generate,
+                typeDescription: String.arbitrary.generate)),
+            Gen.pure(PathError.wrongTargetContentForLastKey(
+                root: root,
+                path: Path.arbitrary.generate,
+                contentDescription: String.arbitrary.generate)),
+            Gen.pure(PathError.multiple(Gen<Int>.fromElements(of: [1,2,3,4,5]).proliferate.map { numbers in
+                return numbers.map { number in
+                    switch(number) {
+                    case 1:
+                        return PathError.emptyPath(
+                            root: root,
+                            path: Path.arbitrary.generate)
+                    case 2:
+                        return PathError.noDictAtKey(
+                            root: root,
+                            path: Path.arbitrary.generate,
+                            key: String.arbitrary.generate)
+                    case 3:
+                        return PathError.noTargetForLastKey(
+                            root: root,
+                            path: Path.arbitrary.generate,
+                            key: String.arbitrary.generate)
+                    case 4:
+                        return PathError.wrongTargetTypeForLastKey(
+                            root: root,
+                            path: Path.arbitrary.generate,
+                            typeDescription: String.arbitrary.generate)
+                    default:
+                        return PathError.wrongTargetContentForLastKey(
+                            root: root,
+                            path: Path.arbitrary.generate,
+                            contentDescription: String.arbitrary.generate)
+                    }
+                }
+            }.generate ))
+            ])
+    }
+}
