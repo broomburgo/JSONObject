@@ -1,3 +1,4 @@
+import Abstract
 import Monads
 
 public typealias PathResult<T> = Result<T,PathError>
@@ -7,6 +8,10 @@ public struct Path: CustomStringConvertible {
 	public init(_ keys: String...) {
 		self.keys = keys
 	}
+    
+    public init(keysArray: [String]) {
+        self.keys = keysArray
+    }
 
 	public var description: String {
 		return keys.reduce("") { $0 + " - " + $1 }
@@ -39,6 +44,12 @@ extension Path: ExpressibleByStringLiteral {
 	}
 }
 
+extension Path: Equatable {
+    public static func == (left: Path, right: Path) -> Bool {
+        return left.keys == right.keys
+    }
+}
+
 public enum PathError: Error, CustomDebugStringConvertible {
 
 	case emptyPath(root: [String:Any], path: Path)
@@ -46,6 +57,7 @@ public enum PathError: Error, CustomDebugStringConvertible {
 	case noTargetForLastKey(root: [String:Any], path: Path, key: String)
 	case wrongTargetTypeForLastKey(root: [String:Any], path: Path, typeDescription: String)
 	case wrongTargetContentForLastKey(root: [String:Any], path: Path, contentDescription: String)
+    case multiple([PathError])
 
 	public var debugDescription: String {
 		switch self {
@@ -59,7 +71,11 @@ public enum PathError: Error, CustomDebugStringConvertible {
 			return "Wrong target type for last key (root: \(root); path: \(path); typeDescription: \(typeDescription))"
 		case .wrongTargetContentForLastKey(let root, let path, let contentDescription):
 			return "Wrong target content for last key (root: \(root); path: \(path); contentDescription: \(contentDescription))"
-		}
+        case .multiple(let pathErrors):
+            return pathErrors
+                .map { "\($0.debugDescription)\n" }
+                .joined()
+        }
 	}
 
 	public var getNSError: NSError {
@@ -109,8 +125,35 @@ public enum PathError: Error, CustomDebugStringConvertible {
 					"path" : path,
 					"contentDescription" : contentDescription,
 					NSLocalizedDescriptionKey: "PathError.wrongTargetContentForLastKey(content: \(contentDescription))"])
-		}
+        case.multiple(let pathErrors):
+            return NSError.init(
+                domain: domain,
+                code: 5,
+                userInfo: ["multiple": [pathErrors.map { $0.getNSError }],
+                           NSLocalizedDescriptionKey: "PathError.multiple"])
+        }
 	}
+}
+
+extension PathError: Semigroup {
+    public static func <> (left: PathError, right: PathError) -> PathError {
+        switch (left, right) {
+        case (.multiple(let leftErrors), .multiple(let rightErrors)):
+            return PathError.multiple(leftErrors + rightErrors)
+        case (.multiple(let leftErrors), _):
+            return PathError.multiple(leftErrors + [right])
+        case (_ , .multiple(let rightErrors)):
+            return PathError.multiple([left] + rightErrors)
+        default:
+            return PathError.multiple([left, right])
+        }
+    }
+}
+
+extension PathError: Equatable {
+    public static func == (left: PathError, right: PathError) -> Bool {
+        return left.debugDescription == right.debugDescription
+    }
 }
 
 public struct PathTo<Target> {

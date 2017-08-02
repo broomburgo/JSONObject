@@ -245,16 +245,12 @@ class JSONObjectSpec: XCTestCase {
 	}
 
 	func testMonoidLaws() {
-		property("1•a = a") <- forAll { (object: JSONObject) in
-			(.empty <> object) == object
-		}
-
-		property("a•1 = a") <- forAll { (object: JSONObject) in
-			(object <> .empty) == object
+		property("1•a = a•1 = a ") <- forAll { (object: JSONObject) in
+            Law.isNeutralToEmpty(object)
 		}
 
 		property("(a•b)•c = a•(b•c)") <- forAll { (object1: JSONObject, object2: JSONObject, object3: JSONObject) in
-			(object1 <> object2 <> object3) == (object1 <> (object2 <> object3))
+            Law.isAssociative(object1, object2, object3)
 		}
 	}
 }

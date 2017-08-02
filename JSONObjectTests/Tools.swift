@@ -130,3 +130,55 @@ extension JSONObject: Arbitrary {
 		return Gen<JSONObject>.one(of: [null,number,bool,string,array,dictionary])
 	}
 }
+
+extension Path: Arbitrary {
+    public static var arbitrary: Gen<Path> {
+        return Gen<Path>.compose {
+            Path.init(keysArray: $0.generate(using: ArrayOf<String>.arbitrary.map { $0.getArray }))
+        }
+    }
+}
+
+extension PathError: Arbitrary {
+    public static var arbitrary: Gen<PathError> {
+        let rootGenerator = DictionaryOf<String,String>.arbitrary.map { $0.getDictionary }
+        let pathGenerator = Path.arbitrary
+        let stringGenerator = String.arbitrary
+        return  Gen<PathError>.one(of: [
+            Gen<PathError>.zip(rootGenerator, pathGenerator).map { PathError.emptyPath(root: $0 as [String: Any], path: $1) },
+            Gen<PathError>.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.noDictAtKey(root: $0 as [String: Any], path: $1, key: $2) },
+            Gen<PathError>.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.noTargetForLastKey(root: $0 as [String: Any], path: $1, key: $2) },
+            Gen<PathError>.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.wrongTargetTypeForLastKey(root: $0 as [String: Any], path: $1, typeDescription: $2) },
+            Gen<PathError>.fromElements(of: [1,2,3,4,5]).proliferate.map { numbers in
+                return PathError.multiple(numbers.map { number -> PathError in
+                    switch(number) {
+                    case 1:
+                        return PathError.emptyPath(
+                            root: rootGenerator.generate,
+                            path: pathGenerator.generate)
+                    case 2:
+                        return PathError.noDictAtKey(
+                            root: rootGenerator.generate,
+                            path: pathGenerator.generate,
+                            key: stringGenerator.generate)
+                    case 3:
+                        return PathError.noTargetForLastKey(
+                            root: rootGenerator.generate,
+                            path: pathGenerator.generate,
+                            key: stringGenerator.generate)
+                    case 4:
+                        return PathError.wrongTargetTypeForLastKey(
+                            root: rootGenerator.generate,
+                            path: pathGenerator.generate,
+                            typeDescription: stringGenerator.generate)
+                    default:
+                        return PathError.wrongTargetContentForLastKey(
+                            root: rootGenerator.generate,
+                            path: pathGenerator.generate,
+                            contentDescription: stringGenerator.generate)
+                    }
+                })
+            }
+        ])
+    }
+}
