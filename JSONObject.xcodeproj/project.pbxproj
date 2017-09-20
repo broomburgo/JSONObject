@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B32CD11DBF829E00A2D5FF /* JSONObject.swift */; };
+		38C3498E1F72BD5800811F72 /* Functional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C3498C1F72BD4500811F72 /* Functional.framework */; };
+		38C3498F1F72BD5800811F72 /* Operadics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C3498D1F72BD4500811F72 /* Operadics.framework */; };
+		38C349901F72BD5C00811F72 /* Functional.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38C3498C1F72BD4500811F72 /* Functional.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		38C349911F72BD5C00811F72 /* Operadics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38C3498D1F72BD4500811F72 /* Operadics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		38FDFE271F2B2D5B002ECC3A /* Abstract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFE251F2B2D5B002ECC3A /* Abstract.framework */; };
 		38FDFE511F2B33CE002ECC3A /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 38FDFE321F2B3186002ECC3A /* JSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38FDFE811F2B36F2002ECC3A /* JSONObject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FDFE781F2B36F1002ECC3A /* JSONObject.framework */; };
@@ -46,6 +50,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				38C349901F72BD5C00811F72 /* Functional.framework in CopyFiles */,
+				38C349911F72BD5C00811F72 /* Operadics.framework in CopyFiles */,
 				38FDFE981F2B3758002ECC3A /* Abstract.framework in CopyFiles */,
 				38FDFE991F2B375A002ECC3A /* SwiftCheck.framework in CopyFiles */,
 				38FDFF271F2B7DF9002ECC3A /* Monads.framework in CopyFiles */,
@@ -60,6 +66,8 @@
 		38B32CC61DBF828700A2D5FF /* JSONObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B32CD11DBF829E00A2D5FF /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		38B32CD31DBF85C500A2D5FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		38C3498C1F72BD4500811F72 /* Functional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Functional.framework; path = Carthage/Build/Mac/Functional.framework; sourceTree = "<group>"; };
+		38C3498D1F72BD4500811F72 /* Operadics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Operadics.framework; path = Carthage/Build/Mac/Operadics.framework; sourceTree = "<group>"; };
 		38D0416A1E9250DC003F7B43 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		38D041711E925213003F7B43 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		38D041721E925213003F7B43 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
@@ -102,6 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C3498E1F72BD5800811F72 /* Functional.framework in Frameworks */,
+				38C3498F1F72BD5800811F72 /* Operadics.framework in Frameworks */,
 				38FDFE811F2B36F2002ECC3A /* JSONObject.framework in Frameworks */,
 				38FDFE951F2B374F002ECC3A /* Abstract.framework in Frameworks */,
 				38FDFF241F2B7D81002ECC3A /* Monads.framework in Frameworks */,
@@ -115,11 +125,9 @@
 		38A0E78A1DDB4C48009DE0A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				38FDFF221F2B7D81002ECC3A /* Monads.framework */,
-				38FDFE4C1F2B33A4002ECC3A /* Abstract.framework */,
-				38FDFE4D1F2B33A4002ECC3A /* SwiftCheck.framework */,
-				38FDFF251F2B7DAB002ECC3A /* Monads.framework */,
-				38FDFE251F2B2D5B002ECC3A /* Abstract.framework */,
+				38C3498B1F72BD1D00811F72 /* test only */,
+				38C3498A1F72BD1400811F72 /* iOS */,
+				38C349891F72BD0300811F72 /* macOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -143,6 +151,34 @@
 				38FDFE801F2B36F2002ECC3A /* JSONObjectTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		38C349891F72BD0300811F72 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				38FDFE4C1F2B33A4002ECC3A /* Abstract.framework */,
+				38FDFF221F2B7D81002ECC3A /* Monads.framework */,
+			);
+			name = macOS;
+			sourceTree = "<group>";
+		};
+		38C3498A1F72BD1400811F72 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				38FDFF251F2B7DAB002ECC3A /* Monads.framework */,
+				38FDFE251F2B2D5B002ECC3A /* Abstract.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		38C3498B1F72BD1D00811F72 /* test only */ = {
+			isa = PBXGroup;
+			children = (
+				38C3498C1F72BD4500811F72 /* Functional.framework */,
+				38C3498D1F72BD4500811F72 /* Operadics.framework */,
+				38FDFE4D1F2B33A4002ECC3A /* SwiftCheck.framework */,
+			);
+			name = "test only";
 			sourceTree = "<group>";
 		};
 		38D041691E9250CF003F7B43 /* Docs */ = {
@@ -264,23 +300,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = broomburgo.it;
 				TargetAttributes = {
 					38B32CC51DBF828700A2D5FF = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					38FDFE771F2B36F1002ECC3A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5MTJLVM7R2;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					38FDFE7F1F2B36F2002ECC3A = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5MTJLVM7R2;
-						ProvisioningStyle = Automatic;
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
@@ -376,7 +412,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -384,7 +422,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -430,7 +472,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -438,7 +482,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -488,7 +536,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -511,7 +559,7 @@
 				PRODUCT_NAME = JSONObject;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -535,7 +583,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.broomburgo.JSONObject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -559,7 +607,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.broomburgo.JSONObject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -568,9 +616,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5MTJLVM7R2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -579,7 +625,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.broomburgo.JSONObjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -588,9 +634,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5MTJLVM7R2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -599,7 +643,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.broomburgo.JSONObjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
