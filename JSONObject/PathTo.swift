@@ -1,7 +1,7 @@
 import Abstract
-import Monads
+import FunctionalKit
 
-public typealias PathResult<T> = Result<T,PathError>
+public typealias PathResult<T> = Result<PathError,T>
 
 public struct Path: CustomStringConvertible {
 	public let keys: [String]

@@ -144,12 +144,13 @@ extension PathError: Arbitrary {
         let rootGenerator = DictionaryOf<String,String>.arbitrary.map { $0.getDictionary }
         let pathGenerator = Path.arbitrary
         let stringGenerator = String.arbitrary
+
         return  Gen<PathError>.one(of: [
-            Gen<PathError>.zip(rootGenerator, pathGenerator).map { PathError.emptyPath(root: $0 as [String: Any], path: $1) },
-            Gen<PathError>.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.noDictAtKey(root: $0 as [String: Any], path: $1, key: $2) },
-            Gen<PathError>.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.noTargetForLastKey(root: $0 as [String: Any], path: $1, key: $2) },
-            Gen<PathError>.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.wrongTargetTypeForLastKey(root: $0 as [String: Any], path: $1, typeDescription: $2) },
-            Gen<PathError>.fromElements(of: [1,2,3,4,5]).proliferate.map { numbers in
+            Gen.zip(rootGenerator, pathGenerator).map { PathError.emptyPath(root: $0 as [String: Any], path: $1) },
+            Gen.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.noDictAtKey(root: $0 as [String: Any], path: $1, key: $2) },
+            Gen.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.noTargetForLastKey(root: $0 as [String: Any], path: $1, key: $2) },
+            Gen.zip(rootGenerator, pathGenerator, stringGenerator).map { PathError.wrongTargetTypeForLastKey(root: $0 as [String: Any], path: $1, typeDescription: $2) },
+            Gen.fromElements(of: [1,2,3,4,5]).proliferate.map { numbers in
                 return PathError.multiple(numbers.map { number -> PathError in
                     switch(number) {
                     case 1:
