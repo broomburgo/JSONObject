@@ -1,4 +1,5 @@
 import Abstract
+import FunctionalKit
 
 extension Array {
 	func isEqual(to other: [Element], considering predicate: (Element,Element) -> Bool) -> Bool {
@@ -32,20 +33,6 @@ extension Dictionary {
 			}
 		}
 		return true
-	}
-}
-
-extension Dictionary where Value: Monoid {
-	static func <> (left: Dictionary, right: Dictionary) -> Dictionary {
-		var m_dict = left
-		for (key,value) in right {
-			if let current = m_dict[key] {
-				m_dict[key] = current <> value
-			} else {
-				m_dict[key] = value
-			}
-		}
-		return m_dict
 	}
 }
 
@@ -207,7 +194,7 @@ extension JSONObject: Monoid {
 		case (.array(let objects1),.array(let objects2)):
 			return .array(objects1 + objects2)
 		case (.dict(let objects1),.dict(let objects2)):
-			return .dict(objects1 <> objects2)
+			return .dict(objects1.merging(objects2, uniquingKeysWith: f.second))
 		case (.dict,_):
 			return left
 		case (_,.dict):
