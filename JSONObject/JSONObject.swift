@@ -36,6 +36,25 @@ extension Dictionary {
 	}
 }
 
+public enum JSONError: Error, CustomStringConvertible {
+    case serialization(NSError)
+    case invalidTopLevelObject
+    case nonJSONType
+    
+    public var description: String {
+        switch self {
+        case .serialization(let error):
+            return error.localizedDescription
+        case .invalidTopLevelObject:
+            return "Invalid top level object"
+        case .nonJSONType:
+            return "Object is not a JSON type"
+        }
+    }
+}
+
+public typealias JSONResult<T> = Result<JSONError, T>
+
 public protocol JSONNumber {
 	var toNSNumber: NSNumber { get }
 }
@@ -78,38 +97,36 @@ public enum JSONObject {
 	case array([JSONObject])
 	case dict([String:JSONObject])
 
-	public static func with(_ object: Any?) -> JSONObject {
-
-		guard let object = object else { return .null }
-
-		switch object {
-		case is NSNull:
-			return .null
-		case is Int:
-			return .number(object as! JSONNumber)
-		case is UInt:
-			return .number(object as! JSONNumber)
-		case is Float:
-			return .number(object as! JSONNumber)
-		case is Double:
-			return .number(object as! JSONNumber)
-		case is Bool:
-			return .bool(object as! Bool)
-		case is String:
-			return .string(object as! String)
-		case is [Any]:
-			return .array((object as! [Any]).map(JSONObject.with))
-		case is [String:Any]:
-			return .dict((object as! [String:Any])
-				.map { ($0,JSONObject.with($1)) }
-				.reduce([:]) {
-					var m_accumulation = $0
-					m_accumulation[$1.0] = $1.1
-					return m_accumulation
-			})
-		default:
-			return .null
-		}
+    public static func with(_ object: Any) -> JSONObject {
+        
+        switch object {
+        case is NSNull:
+            return .null
+        case is Int:
+            return .number(object as! JSONNumber)
+        case is UInt:
+            return .number(object as! JSONNumber)
+        case is Float:
+            return .number(object as! JSONNumber)
+        case is Double:
+            return .number(object as! JSONNumber)
+        case is Bool:
+            return .bool(object as! Bool)
+        case is String:
+            return .string(object as! String)
+        case is [Any]:
+            return .array((object as! [Any]).map(JSONObject.with))
+        case is [String:Any]:
+            return .dict((object as! [String:Any])
+                .map { ($0,JSONObject.with($1)) }
+                .reduce([:]) {
+                    var m_accumulation = $0
+                    m_accumulation[$1.0] = $1.1
+                    return m_accumulation
+            })
+        default:
+            return .null
+        }
 	}
 
 	public static func optDict(key: String, value: Any?) -> JSONObject {
@@ -210,17 +227,18 @@ extension JSONObject: Monoid {
 }
 
 extension JSONSerialization {
-	public static func data(with object: JSONObject) throws -> Data {
+	public static func data(with object: JSONObject) -> JSONResult<Data> {
 		let topLevelObject = object.getTopLevel
 		guard JSONSerialization.isValidJSONObject(topLevelObject) else {
-			throw NSError(
-				domain: "JSONSerialization",
-				code: 0,
-				userInfo: [NSLocalizedDescriptionKey : "Invalid JSON object",
-				           "OriginalJSONObject" : object,
-				           "GotTopLevelObject" : topLevelObject])
+            return .failure(.invalidTopLevelObject)
 		}
-		return try JSONSerialization.data(withJSONObject: topLevelObject)
+        do {
+            let data = try JSONSerialization.data(withJSONObject: topLevelObject)
+            return .success(data)
+        }
+        catch let error as NSError{
+            return .failure(.serialization(error))
+        }
 	}
 }
 
@@ -229,7 +247,7 @@ public protocol JSONObjectConvertible {
 }
 
 extension JSONObjectConvertible {
-    public func toData() throws -> Data {
-        return try JSONSerialization.data(with: toJSONObject)
+    public func serializeJSONObject() -> JSONResult<Data> {
+        return JSONSerialization.data(with: toJSONObject)
     }
 }
