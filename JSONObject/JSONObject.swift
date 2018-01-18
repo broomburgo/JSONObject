@@ -223,3 +223,13 @@ extension JSONSerialization {
 		return try JSONSerialization.data(withJSONObject: topLevelObject)
 	}
 }
+
+public protocol JSONObjectConvertible {
+    var toJSONObject: JSONObject { get }
+}
+
+extension JSONObjectConvertible {
+    public func toData() throws -> Data {
+        return try JSONSerialization.data(with: toJSONObject)
+    }
+}
