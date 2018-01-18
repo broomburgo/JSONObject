@@ -26,6 +26,8 @@
 		38FDFECE1F2B483D002ECC3A /* PathTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FDFECD1F2B483D002ECC3A /* PathTo.swift */; };
 		38FDFECF1F2B483D002ECC3A /* PathTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FDFECD1F2B483D002ECC3A /* PathTo.swift */; };
 		AA01391E1F30CC6C00D7E521 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA01391D1F30CC6C00D7E521 /* PathTests.swift */; };
+		AAD52C642010F65F001F667F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD52C632010F65F001F667F /* Extensions.swift */; };
+		AAD52C652010F65F001F667F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD52C632010F65F001F667F /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,7 @@
 		38FDFE801F2B36F2002ECC3A /* JSONObjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONObjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FDFECD1F2B483D002ECC3A /* PathTo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathTo.swift; sourceTree = "<group>"; };
 		AA01391D1F30CC6C00D7E521 /* PathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathTests.swift; sourceTree = "<group>"; };
+		AAD52C632010F65F001F667F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,7 @@
 				38B32CD11DBF829E00A2D5FF /* JSONObject.swift */,
 				38FDFE321F2B3186002ECC3A /* JSONObject.h */,
 				38FDFE331F2B3186002ECC3A /* Info.plist */,
+				AAD52C632010F65F001F667F /* Extensions.swift */,
 			);
 			path = JSONObject;
 			sourceTree = "<group>";
@@ -357,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38B32CD21DBF829E00A2D5FF /* JSONObject.swift in Sources */,
+				AAD52C642010F65F001F667F /* Extensions.swift in Sources */,
 				38FDFECE1F2B483D002ECC3A /* PathTo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38FDFE8F1F2B3718002ECC3A /* JSONObject.swift in Sources */,
+				AAD52C652010F65F001F667F /* Extensions.swift in Sources */,
 				38FDFECF1F2B483D002ECC3A /* PathTo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
